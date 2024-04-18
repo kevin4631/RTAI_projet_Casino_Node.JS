@@ -7,7 +7,8 @@ app.use(express.static(path.join(__dirname, 'casino')));
 
 // Cette route gère toutes les autres requêtes et renvoie le fichier index.html de l'application Vue.js
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'casino', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client/casino', 'index.html'));
+
 });
 
 // Démarrer le serveur
