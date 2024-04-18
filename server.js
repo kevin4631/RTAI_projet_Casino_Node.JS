@@ -2,14 +2,12 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// Servir les fichiers statiques depuis le dossier de l'application Vue.js
-app.use(express.static(path.join(__dirname, 'client/dist')));
+// Servir les fichiers statiques du dossier casino
+app.use(express.static(path.join(__dirname, 'casino')));
 
-// Définir d'autres routes de votre application Node.js
-
-// Route d'exemple
-app.get('/api/data', (req, res) => {
-    res.json({ message: 'Données provenant du serveur Node.js' });
+// Cette route gère toutes les autres requêtes et renvoie le fichier index.html de l'application Vue.js
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'casino', 'index.html'));
 });
 
 // Démarrer le serveur
