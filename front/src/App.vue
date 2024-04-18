@@ -7,9 +7,7 @@ import Test from './components/Test.vue'
 
 <template>
 
-<router-link to="test"> Lien vers test</router-link>
-
-<a href="/test"> Autre lien</a>
+<a href="/test"> Lien vers la page Test</a>
 <router-view/>
 
 </template>
