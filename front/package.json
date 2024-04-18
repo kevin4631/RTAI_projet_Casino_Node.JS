@@ -1,5 +1,5 @@
 {
-  "name": "casino",
+  "name": "casino-front",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "axios": "^1.6.8",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
     "vite": "^5.2.8"
   }
-
 }
