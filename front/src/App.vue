@@ -8,6 +8,8 @@ import Test from './components/Test.vue'
 <template>
 
 <a href="/test"> Lien vers la page Test</a>
+<br>
+<a href="/machineSous"> Lien vers la machine à sous </a>
 <router-view/>
 
 </template>

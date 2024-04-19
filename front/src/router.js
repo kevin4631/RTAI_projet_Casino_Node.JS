@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Home from './components/Home.vue';
 import Test from './components/Test.vue';
+import MachineSous from './components/MachineSous.vue'
 
 
 const routes = [
@@ -14,7 +15,15 @@ const routes = [
     path: '/test',
     name: 'test',
     component: Test
+  },
+
+  {
+    path: '/machineSous',
+    name:'machine',
+    component: MachineSous
   }
+
+
 
   // Ajoutez d'autres routes si nécessaire
 ];
