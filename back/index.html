@@ -1,39 +1,70 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Machine à Sous</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Casino Royal</title>
   <style>
-    
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #044946;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+     
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto;
+      width: 200px;
+    }
+
+    #BoutonMachineSous {
+      background-color: #00F0A6;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 10px;
+      border: solid black;
+      text-align: center;
+      display: inline-block; /* Pour que la largeur s'ajuste au contenu */
+      
+    }
+
+    #imageMachineSous {
+      width: 30px;
+      height: 30px;
+      vertical-align: middle; /* Pour aligner l'image verticalement au centre */
+      margin-left: 10px; /* Ajouter un espace entre l'image et le texte */
+    }
+
+    body {
+        background-image: url("/images/background-accueil.jpg");
+        background-size: cover;
+    }
+
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Machine à Sous</h1>
-    <div id="slotMachine" class="slot-machine">
-  <div class="row high-line">
-    <!-- Utilisez un ID unique pour chaque symbole -->
-    <img id="symbol1" class="symbol" alt="Cerise">
-    <img id="symbol2" class="symbol" alt="Citron">
-    <!-- Ajoutez les balises img pour les autres symboles -->
+    <h1>Bienvenue au Casino Royal</h1>
+    <img class="logo" src="images/casino-logo.png" alt="Logo du Casino Royal">
+    <p>Bienvenue au Casino Royal, le meilleur casino en ligne pour les amateurs de jeux de hasard et de divertissement ! Que vous soyez un joueur chevronné ou un débutant, vous trouverez une large sélection de jeux passionnants pour vous divertir et vous faire vivre une expérience inoubliable.</p>
+    <p>Découvrez nos jeux de table classiques comme le blackjack, la roulette et le poker, ou plongez dans l'excitation des machines à sous avec des jackpots progressifs et des graphismes époustouflants. Nous proposons également des jeux en direct où vous pouvez interagir avec de vrais croupiers et vivre l'ambiance authentique d'un casino terrestre depuis le confort de votre domicile.</p>
+    <p>Rejoignez-nous dès aujourd'hui et profitez de nos offres de bienvenue, de promotions exclusives et de récompenses généreuses. Notre équipe dévouée est là pour vous offrir une expérience de jeu sécurisée, équitable et divertissante à tout moment.</p>
+    <p>N'attendez plus, inscrivez-vous dès maintenant et faites partie de la communauté du Casino Royal !</p>
+    <a href="MachineSous.html" id="BoutonMachineSous"> Machine à sous <img src="images/machine-a-sous.png" alt="" id="imageMachineSous"></a>
   </div>
-  <div class="row">
-    <!-- Ajoutez des balises div pour les autres lignes -->
-  </div>
-  <div class="row low-line">
-    <!-- Ajoutez des balises div pour les autres lignes -->
-  </div>
-</div>
-
-    
-    <button id="spinButton">Jouer</button>
-    <div id="result"></div>
-  </div>
-
-  <script src="script.js"></script>
-
-
+  
 </body>
 </html>
