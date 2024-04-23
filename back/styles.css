@@ -45,21 +45,14 @@ body::before {
 .symbol {
   width: 80px;
   height: 80px;
+  border: 3px solid#FFD700;
+
   margin: 5px;
+  text-align: center;
+  line-height: 50px;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
-  animation: spin 1s linear infinite; /* Add spinning animation */
 }
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 
 .high-line .symbol,
 .low-line .symbol {
@@ -96,6 +89,5 @@ h1{
   font-weight: bold;
   color: #F9F9F9;
 }
-#icone {
-width: 24px;
-}
+
+

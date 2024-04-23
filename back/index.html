@@ -1,69 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casino Royal</title>
-  <style>
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: #044946;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      color: white;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casino Royal</title>
+    <style>
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #044946;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color: white;
+      }
 
-    h1 {
-      text-align: center;
-     
-    }
+      h1 {
+        text-align: center;
+      }
 
-    p {
-      text-align: justify;
-    }
+      p {
+        text-align: justify;
+      }
 
-    .logo {
-      display: block;
-      margin: 0 auto;
-      width: 200px;
-    }
+      .logo {
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+      }
 
-    #BoutonMachineSous {
-      background-color: #00F0A6;
-      padding: 8px;
-      text-decoration: none;
-      border-radius: 10px;
-      border: solid black;
-      text-align: center;
-      display: inline-block; /* Pour que la largeur s'ajuste au contenu */
-      
-    }
+      #BoutonMachineSous {
+        background-color: #00f0a6;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 10px;
+        border: solid black;
+        text-align: center;
+        display: inline-block; /* Pour que la largeur s'ajuste au contenu */
+      }
+      #icone {
+        margin-left: 300px;
+        transition: transform 0.3s; /* Add transition for smooth effect */
+        padding: 0; /* Remove padding */
+      }
 
-    #imageMachineSous {
-      width: 30px;
-      height: 30px;
-      vertical-align: middle; /* Pour aligner l'image verticalement au centre */
-      margin-left: 10px; /* Ajouter un espace entre l'image et le texte */
-    }
+      #icone {
+        margin-left: 300px;
+        transition: transform 0.3s; /* Add transition for smooth effect */
+        padding: 0; /* Remove padding */
+      }
 
-    body {
+      #icone:hover {
+        transform: translateY(-5px) rotate(360deg); /* Move the icon up and rotate 360 degrees on hover */
+      }
+
+      body {
         background-image: url("/images/background-accueil.jpg");
         background-size: cover;
-    }
-
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Bienvenue au Casino Royal</h1>
-    <img class="logo" src="images/casino-logo.png" alt="Logo du Casino Royal">
-    <p>Bienvenue au Casino Royal, le meilleur casino en ligne pour les amateurs de jeux de hasard et de divertissement ! Que vous soyez un joueur chevronné ou un débutant, vous trouverez une large sélection de jeux passionnants pour vous divertir et vous faire vivre une expérience inoubliable.</p>
-    <p>Découvrez nos jeux de table classiques comme le blackjack, la roulette et le poker, ou plongez dans l'excitation des machines à sous avec des jackpots progressifs et des graphismes époustouflants. Nous proposons également des jeux en direct où vous pouvez interagir avec de vrais croupiers et vivre l'ambiance authentique d'un casino terrestre depuis le confort de votre domicile.</p>
-    <p>Rejoignez-nous dès aujourd'hui et profitez de nos offres de bienvenue, de promotions exclusives et de récompenses généreuses. Notre équipe dévouée est là pour vous offrir une expérience de jeu sécurisée, équitable et divertissante à tout moment.</p>
-    <p>N'attendez plus, inscrivez-vous dès maintenant et faites partie de la communauté du Casino Royal !</p>
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bienvenue au Casino Royal</h1>
+      <img
+        class="logo"
+        src="images/casino-logo.png"
+        alt="Logo du Casino Royal"
+      />
+      <p>
+        Bienvenue au Casino Royal, le meilleur casino en ligne pour les amateurs
+        de jeux de hasard et de divertissement ! Que vous soyez un joueur
+        chevronné ou un débutant, vous trouverez une large sélection de jeux
+        passionnants pour vous divertir et vous faire vivre une expérience
+        inoubliable.
+      </p>
+      <p>
+        Découvrez nos jeux de table classiques comme le blackjack, la roulette
+        et le poker, ou plongez dans l'excitation des machines à sous avec des
+        jackpots progressifs et des graphismes époustouflants. Nous proposons
+        également des jeux en direct où vous pouvez interagir avec de vrais
+        croupiers et vivre l'ambiance authentique d'un casino terrestre depuis
+        le confort de votre domicile.
+      </p>
+      <p>
+        Rejoignez-nous dès aujourd'hui et profitez de nos offres de bienvenue,
+        de promotions exclusives et de récompenses généreuses. Notre équipe
+        dévouée est là pour vous offrir une expérience de jeu sécurisée,
+        équitable et divertissante à tout moment.
+      </p>
+      <p>
+        N'attendez plus, inscrivez-vous dès maintenant et faites partie de la
+        communauté du Casino Royal !
+      </p>
+      <a href="MachineSous.html"><img src="images/777.png" id="icone" /></a>
     </div>
-    <div ><img src="images/777.png" id="icone"></div>
-</body>
+  </body>
 </html>
