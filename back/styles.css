@@ -1,34 +1,37 @@
 body {
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .slot-machine {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Pour centrer horizontalement */
-  }
-  
-  .row {
-    display: flex;
-  }
-  
-  .symbol {
-    width: 50px;
-    height: 50px;
-    border: 1px solid black;
-    margin: 5px;
-    text-align: center;
-    line-height: 50px;
-    opacity: 0; /* Commencez avec une opacité de 0 */
-    transition: opacity 0.5s ease-in-out; /* Transition pour une apparence progressive */
-  }
+  font-family: Arial, sans-serif;
+  background-image: url('/back/images/background.png');
+  background-size: cover;
+  background-position: center;
+}
 
-  /* Masquer la moitié supérieure des images en haut */
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.slot-machine {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Pour centrer horizontalement */
+}
+
+.row {
+  display: flex;
+}
+
+.symbol {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  margin: 5px;
+  text-align: center;
+  line-height: 50px;
+  opacity: 0; /* Commencez avec une opacité de 0 */
+  transition: opacity 0.5s ease-in-out; /* Transition pour une apparence progressive */
+}
+
+/* Masquer la moitié supérieure des images en haut */
 .high-line .symbol {
   overflow: hidden;
   height: 25px; /* Ajustez la hauteur selon vos besoins */
@@ -39,8 +42,3 @@ body {
   overflow: hidden;
   height: 25px; /* Ajustez la hauteur selon vos besoins */
 }
-
-  
- 
-  
-  

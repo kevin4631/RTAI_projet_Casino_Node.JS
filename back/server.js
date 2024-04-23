@@ -8,7 +8,8 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/')));
 
-app.post('/tour-machine-a-sous', (req, res) => {
+
+app.post('/', (req, res) => {
   // Code pour gérer la requête POST
 });
 
