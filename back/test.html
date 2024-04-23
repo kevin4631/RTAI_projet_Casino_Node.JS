@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine à Sous</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    canvas {
+      border: 1px solid #ff00aa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Machine à Sous</h1>
+
+    <div id="slotMachine" class="slot-machine">
+      <canvas id="canvas" width="400" height="240"></canvas>
+    </div>
+
+
+    <button id="spinButton">Jouer</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    var canvas = document.querySelector('#canvas');
+    var ctx = canvas.getContext('2d');
+
+    class Elem {
+      constructor(id, x, y, img) {
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.img = img;
+      }
+
+
+
+      update(ctx) {
+        this.y += 100;
+
+        if (this.y == 270)
+          this.y = -30;
+
+        this.draw(ctx)
+      }
+
+      draw(ctx) {
+        ctx.clearRect(0, 0, 100, 300); // Clear previous frame
+        ctx.drawImage(this.img, this.x, this.y, 100, 100);
+      }
+
+    }
+
+    let orange = new Image();
+    orange.src = 'images/orange.png';
+
+    let roue1 = new Elem(0, 0, -30, orange);
+
+    orange.onload = function () {
+      // Now image is loaded, you can draw it initially if needed:
+      roue1.draw(ctx);
+    };
+
+
+    async function updateWithDelay() {
+      for (let i = 0; i < 20; i++) {
+        roue1.update(ctx);
+        await new Promise(resolve => setTimeout(resolve, 100)); // Attendre 500ms avant la prochaine itération
+      }
+    }
+
+
+
+    // Événement de clic sur le bouton "Jouer"
+    document.getElementById('spinButton').addEventListener('click', function () {
+
+        updateWithDelay();
+    });
+
+
+    //roue1.draw(ctx)
+    class Rou {
+      constructor(id) {
+
+      }
+    }
+
+
+  </script>
+
+
+</body>
+
+</html>
