@@ -1,0 +1,23 @@
+{
+  "name": "rtai_projet_casino_node.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevin4631/RTAI_projet_Casino_Node.JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevin4631/RTAI_projet_Casino_Node.JS/issues"
+  },
+  "homepage": "https://github.com/kevin4631/RTAI_projet_Casino_Node.JS#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

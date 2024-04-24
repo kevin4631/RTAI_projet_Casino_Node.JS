@@ -7,21 +7,21 @@ function getRandomSymbol() {
 function getSymbolByNumber(number) {
   switch (number) {
     case 1:
-      return "images/cerise.png";
+      return "/images/cerise.png";
     case 2:
-      return "images/citron.png";
+      return "/images/citron.png";
     case 3:
-      return "images/orange.png";
+      return "/images/orange.png";
     case 4:
-      return "images/raisins.png";
+      return "/images/raisins.png";
     case 5:
-      return "images/pasteque.png";
+      return "/images/pasteque.png";
     case 6:
-      return "images/cloche.png";
+      return "/images/cloche.png";
     case 7:
-      return "images/bar.png";
+      return "/images/bar.png";
     case 8:
-      return "images/sept.png";
+      return "/images/sept.png";
     default:
       return "";
   }
