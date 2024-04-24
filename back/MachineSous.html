@@ -12,28 +12,48 @@
 <body>
   <div class="container">
     <h1>Machine à Sous</h1>
+    
     <div id="slotMachine" class="slot-machine">
-  <div class="row high-line">
-    <!-- Utilisez un ID unique pour chaque symbole -->
-    <img id="symbol1" class="symbol" alt="Cerise">
-    <img id="symbol2" class="symbol" alt="Citron">
-    <!-- Ajoutez les balises img pour les autres symboles -->
-  </div>
-  <div class="row">
-    <!-- Ajoutez des balises div pour les autres lignes -->
-  </div>
-  <div class="row low-line">
-    <!-- Ajoutez des balises div pour les autres lignes -->
-  </div>
-</div>
+      <div class="row high-line">
+        <!-- Utilisez un ID unique pour chaque symbole -->
+        <img id="symbol1" class="symbol" alt="Cerise">
+        <img id="symbol2" class="symbol" alt="Citron">
+        <!-- Ajoutez les balises img pour les autres symboles -->
+      </div>
+      <div class="row">
+        <!-- Ajoutez des balises div pour les autres lignes -->
+      </div>
+      <div class="row low-line">
+        <!-- Ajoutez des balises div pour les autres lignes -->
+      </div>
+    </div>
 
+    <div id="ZoneCredit">
+      <label for="creditInput"> <img src="images/credit.png" alt="" id="imageCredit"> </label>
+      <input type="number" id="creditInput" value="100">
+    </div>
     
     <button id="spinButton">Jouer</button>
     <div id="result"></div>
   </div>
 
+  
+  <!-- Zone de texte pour afficher les barèmes de gains -->
+  <div id="gainsTable" class="gains-table">
+    <h2>Barèmes de Gains</h2>
+    <ul>
+      <li>Cerise: 10 crédits</li>
+      <li>Citron: 5 crédits</li>
+      <li>Orange: 20 crédits</li>
+      <li>Raisins: 15 crédits</li>
+      <li>Pasteque: 30 crédits</li>
+      <li>Cloche: 25 crédits</li>
+      <li>Bar: 40 crédits</li>
+      <li>Sept: 35 crédits</li>
+    </ul>
+  </div>
+</div>
+
   <script src="script.js"></script>
-
-
 </body>
 </html>
