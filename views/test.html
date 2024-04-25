@@ -129,6 +129,21 @@
     }
 
 
+
+
+    // Récupère les paramètres nom, prenom et credit de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const credit = urlParams.get("credit");
+
+    // Affiche le crédit dans la console pour le débogage
+    console.log("Crédit récupéré depuis l'URL :", credit);
+
+    // Met à jour le contenu de l'élément credit
+    const jetons = document.getElementById("credit");
+    if (jetons && credit) {
+      jetons.textContent = credit;
+    }
+
   </script>
 
 

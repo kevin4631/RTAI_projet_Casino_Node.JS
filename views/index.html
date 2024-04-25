@@ -1,69 +1,66 @@
-<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Casino Royal</title>
+    <script src="server.js"></script>
+
     <style>
+      body {
+        background-image: url("/images/background-accueil.jpg");
+        background-size: cover;
+        overflow: hidden;
+        margin: 0; /* Réinitialise la marge par défaut */
+        padding: 0; /* Réinitialise le rembourrage par défaut */
+      }
+
       .container {
-        max-width: 800px;
-        margin: 50px auto;
+        width: 800px; /* Définit une largeur fixe */
+        margin: 30px auto; /* Centre horizontalement */
         padding: 20px;
         background-color: #044946;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         color: white;
+        text-align: center; /* Centre le contenu */
       }
 
       h1 {
-        text-align: center;
+        margin-bottom: 20px; /* Ajoute un espace en dessous du titre */
       }
 
       p {
         text-align: justify;
+        margin-bottom: 10px; /* Ajoute un espace entre les paragraphes */
       }
 
       .logo {
-        display: block;
-        margin: 0 auto;
-        width: 200px;
+        margin-bottom: 20px; /* Ajoute un espace en dessous du logo */
       }
 
-      #BoutonMachineSous {
-        background-color: #00f0a6;
-        padding: 8px;
-        text-decoration: none;
-        border-radius: 10px;
-        border: solid black;
-        text-align: center;
-        display: inline-block; /* Pour que la largeur s'ajuste au contenu */
+      .icone img {
+        transition: transform 0.5s ease; /* Transition douce pour l'effet de rotation */
       }
 
-      #icone {
-        margin-left: 300px;
-        transition: transform 0.3s; /* Add transition for smooth effect */
-        padding: 0; /* Remove padding */
+      .icone:hover img {
+        transform: rotate(360deg); /* Fait tourner l'icône au survol */
+        cursor: pointer; /* Change le curseur en pointeur au survol */
       }
-
-      #icone {
-        margin-left: 300px;
-        transition: transform 0.3s; /* Add transition for smooth effect */
-        padding: 0; /* Remove padding */
+      #credit{
+        color: gold;
+        font-size:xx-large;
       }
-
-      #icone:hover {
-        transform: translateY(-5px) rotate(360deg); /* Move the icon up and rotate 360 degrees on hover */
+      #joueur{
+        color: gold;
       }
-
-      body {
-        background-image: url("/images/background-accueil.jpg");
-        background-size: cover;
-      }
+      
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Bienvenue au Casino Royal</h1>
+      <h1>Bienvenue <span id="joueur"></span> au Casino Royal !</h1>
+      Votre credit :<div id="credit"></div>
+
       <img
         class="logo"
         src="/images/casino-logo.png"
@@ -90,11 +87,31 @@
         dévouée est là pour vous offrir une expérience de jeu sécurisée,
         équitable et divertissante à tout moment.
       </p>
-      <p>
-        N'attendez plus, inscrivez-vous dès maintenant et faites partie de la
-        communauté du Casino Royal !
-      </p>
-      <a href="MachineSous.html"><img src="/images/777.png" id="icone" /></a>
+      <a href="MachineSous.html" class="icone" id="machineIcon">
+        <img src="/images/777.png" alt="Icone machine à sous" />
+      </a>
     </div>
+
+
+    <script>
+  
+      // Récupère les paramètres nom, prenom et credit de l'URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const nom = urlParams.get("nom");
+      const prenom = urlParams.get("prenom"); // Ajout de la récupération du prénom
+      const credit = urlParams.get("credit");
+
+      // Met à jour le contenu de l'élément joueur
+      const joueurElement = document.getElementById("joueur");
+      if (joueurElement && nom && prenom) {
+        joueurElement.textContent = nom + " " + prenom; // Utilisation de la concaténation pour afficher nom et prenom
+      }
+
+      // Met à jour le contenu de l'élément credit
+      const creditElement = document.getElementById("credit");
+      if (creditElement && credit) {
+        creditElement.textContent = credit;
+      }
+    </script>
   </body>
 </html>

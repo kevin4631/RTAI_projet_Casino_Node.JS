@@ -28,16 +28,31 @@ function getSymbolByNumber(number) {
 }
 
 const gains = {
-  "1": 10,   // Combinaison gagnante avec au moins 3 symboles identiques
-  "2": 5,    // Combinaison gagnante avec au moins 3 symboles identiques
-  "3": 20,   // Combinaison gagnante avec au moins 3 symboles identiques
-  "4": 15,   // Combinaison gagnante avec au moins 3 symboles identiques
-  "5": 30,   // Combinaison gagnante avec au moins 3 symboles identiques
-  "6": 25,   // Combinaison gagnante avec au moins 3 symboles identiques
-  "7": 40,   // Combinaison gagnante avec au moins 3 symboles identiques
-  "8": 35    // Combinaison gagnante avec au moins 3 symboles identiques
+  1: 10, // Combinaison gagnante avec au moins 3 symboles identiques
+  2: 5, // Combinaison gagnante avec au moins 3 symboles identiques
+  3: 20, // Combinaison gagnante avec au moins 3 symboles identiques
+  4: 15, // Combinaison gagnante avec au moins 3 symboles identiques
+  5: 30, // Combinaison gagnante avec au moins 3 symboles identiques
+  6: 25, // Combinaison gagnante avec au moins 3 symboles identiques
+  7: 40, // Combinaison gagnante avec au moins 3 symboles identiques
+  8: 35, // Combinaison gagnante avec au moins 3 symboles identiques
   // Vous pouvez ajouter d'autres combinaisons gagnantes avec les montants de gains correspondants
 };
+
+
+    // Récupère les paramètres nom, prenom et credit de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const credit = urlParams.get("credit");
+
+    // Affiche le crédit dans la console pour le débogage
+    console.log("Crédit récupéré depuis l'URL :", credit);
+
+    // Met à jour le contenu de l'élément credit
+    const jetons = document.getElementById("credit");
+    if (jetons && credit) {
+      jetons.textContent = credit;
+    }
+
 
 // Fonction pour vérifier les gains
 function checkWin(symbols) {
@@ -47,7 +62,7 @@ function checkWin(symbols) {
 
   // Vérifier s'il y a au moins trois symboles identiques sur la ligne du milieu
   for (let symbol of uniqueSymbols) {
-    const count = middleRow.filter(s => s === symbol).length;
+    const count = middleRow.filter((s) => s === symbol).length;
     if (count >= 3) {
       winResult.isWin = true;
       winResult.gain = gains[symbol];
@@ -62,7 +77,7 @@ let isFirstTime = false;
 
 // Fonction principale pour jouer à la machine à sous
 function playSlotMachine() {
-  const creditInput = document.getElementById('creditInput');
+  const creditInput = document.getElementById("creditInput");
   const currentCredit = parseInt(creditInput.value);
 
   // Vérifier si l'utilisateur a suffisamment de crédits pour jouer
@@ -74,23 +89,23 @@ function playSlotMachine() {
     return; // Arrêter la fonction si l'utilisateur n'a pas assez de crédits
   }
 
-  const slotMachine = document.getElementById('slotMachine');
-  const resultDiv = document.getElementById('result');
-  resultDiv.textContent = '';
+  const slotMachine = document.getElementById("slotMachine");
+  const resultDiv = document.getElementById("result");
+  resultDiv.textContent = "";
 
-  slotMachine.innerHTML = '';
+  slotMachine.innerHTML = "";
 
   const symbols = [];
 
   // Génération des symboles et affichage sur la machine à sous
   for (let i = 0; i < 3; i++) {
-    const row = document.createElement('div');
-    row.classList.add('row');
+    const row = document.createElement("div");
+    row.classList.add("row");
     const rowSymbols = [];
     for (let j = 0; j < 5; j++) {
       const symbolNumber = getRandomSymbol();
-      const symbolElement = document.createElement('img');
-      symbolElement.classList.add('symbol');
+      const symbolElement = document.createElement("img");
+      symbolElement.classList.add("symbol");
       symbolElement.src = getSymbolByNumber(symbolNumber);
       row.appendChild(symbolElement);
       rowSymbols.push(symbolNumber);
@@ -100,20 +115,20 @@ function playSlotMachine() {
   }
 
   // Appliquer progressivement l'opacité aux symboles après leur génération
-  const symbolsToAnimate = document.querySelectorAll('.symbol');
+  const symbolsToAnimate = document.querySelectorAll(".symbol");
   symbolsToAnimate.forEach((symbol, index) => {
     setTimeout(() => {
-      symbol.style.opacity = '1';
+      symbol.style.opacity = "1";
     }, index * 200);
   });
 
   // Ajouter une classe d'animation pour démarrer l'animation
-  slotMachine.classList.add('spin-animation');
+  slotMachine.classList.add("spin-animation");
 
   // Arrêter l'animation après un certain délai (par exemple, 3 secondes)
   setTimeout(() => {
     // Supprimer la classe d'animation pour arrêter l'animation
-    slotMachine.classList.remove('spin-animation');
+    slotMachine.classList.remove("spin-animation");
 
     // Vérifier si le joueur a gagné
     const winResult = checkWin(symbols);
@@ -122,11 +137,16 @@ function playSlotMachine() {
       creditInput.value = currentCredit + winResult.gain;
       resultDiv.textContent = `Félicitations ! Vous avez gagné ${winResult.gain} crédits !`;
     } else {
-      resultDiv.textContent = 'Dommage ! Essayez encore !';
+      resultDiv.textContent = "Dommage ! Essayez encore !";
     }
   }, 3000);
 }
 
 // Événement de clic sur le bouton "Jouer"
-const spinButton = document.getElementById('spinButton');
-spinButton.addEventListener('click', playSlotMachine);
+const spinButton = document.getElementById("spinButton");
+spinButton.addEventListener("click", playSlotMachine);
+// Met à jour le contenu de l'élément credit
+const creditElement = document.getElementById("credit");
+if (creditElement && credit) {
+  creditElement.textContent = credit;
+}
