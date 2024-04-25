@@ -37,11 +37,24 @@ class MachineSous {
 
 
     verifierCombinaison(tab_result) {
+        // Cas -1 : ENV DE TEST UNIQUEMENT
+        for (let i = 0; i < tab_result.length - 2; i++) {
+            if (tab_result[i] === tab_result[i + 1] || tab_result[i+1] === tab_result[i + 2]) {
+                return -1;
+            }
+        }
+
         // Cas 3 : Cinq éléments identiques
         let firstElement = tab_result[0];
         if (tab_result.every(elem => elem === firstElement)) {
             return 3;
         }
+
+        // Cas 2 : Trois éléments identiques consécutifs et 2 Identique
+        if (tab_result[0] === tab_result[1] && tab_result[1] === tab_result[2] && tab_result[3] === tab_result[4]
+            || tab_result[0] === tab_result[1] && tab_result[2] === tab_result[3] && tab_result[3] === tab_result[4]
+            || tab_result[0] === tab_result[4] && tab_result[1] === tab_result[2] && tab_result[2] === tab_result[3])
+            return 2;
 
         // Cas 1 : Trois éléments identiques consécutifs
         for (let i = 0; i < tab_result.length - 2; i++) {
@@ -50,14 +63,7 @@ class MachineSous {
             }
         }
 
-        // Cas 2 : Trois éléments identiques consécutifs
-        for (let i = 0; i < tab_result.length - 2; i++) {
-            if (tab_result[i] === tab_result[i + 1] || tab_result[i] === tab_result[i + 2] || tab_result[i + 1] === tab_result[i + 2]) {
-                return 2;
-            }
-        }
-
-        // cas 0 : Perdu
+        // Cas 0 : Perdue
         return 0;
     }
 

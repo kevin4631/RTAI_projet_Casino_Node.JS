@@ -51,21 +51,19 @@
 
         machineSous.jouer(ctx).then(result => {
 
-          console.log('res =' + result);
+          console.log('resultat : ' + result);
           switch (result) {
-            case 0:
-              console.log('Perdu');
+            case -1:
+              // ENV DE TEST
+              animationWin(1);
               break;
             case 1:
-              console.log('3=');
               animationWin(1);
               break;
             case 2:
-              console.log('2=');
               animationWin(2);
               break;
             case 3:
-              console.log('JACK POT');
               animationWin(3);
               break;
           }
