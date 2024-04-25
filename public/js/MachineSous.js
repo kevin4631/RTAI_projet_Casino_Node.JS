@@ -49,6 +49,14 @@ class MachineSous {
                 return 1;
             }
         }
+
+        // Cas 2 : Trois éléments identiques consécutifs
+        for (let i = 0; i < tab_result.length - 2; i++) {
+            if (tab_result[i] === tab_result[i + 1] || tab_result[i] === tab_result[i + 2] || tab_result[i + 1] === tab_result[i + 2]) {
+                return 2;
+            }
+        }
+
         // cas 0 : Perdu
         return 0;
     }

@@ -48,20 +48,32 @@
       }
       else {
         Global.LANCER = true;
-        switch (machineSous.jouer(ctx)) {
-          case 0:
-            break;
-          case 1:
-            animationWin(1);
-            break;
-          case 2:
-            animationWin(2);
-            break;
-          case 3:
-            animationWin(3);
-            break;
-        }
-        Global.LANCER = false;
+
+        machineSous.jouer(ctx).then(result => {
+
+          console.log('res =' + result);
+          switch (result) {
+            case 0:
+              console.log('Perdu');
+              break;
+            case 1:
+              console.log('3=');
+              animationWin(1);
+              break;
+            case 2:
+              console.log('2=');
+              animationWin(2);
+              break;
+            case 3:
+              console.log('JACK POT');
+              animationWin(3);
+              break;
+          }
+          Global.LANCER = false;
+        }).catch(error => {
+          console.error("Une erreur s'est produite :", error);
+        });
+
       }
     });
 
