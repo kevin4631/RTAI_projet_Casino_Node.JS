@@ -36,7 +36,23 @@ class MachineSous {
     }
 
 
-    
+    verifierCombinaison(tab_result) {
+        // Cas 3 : Cinq éléments identiques
+        let firstElement = tab_result[0];
+        if (tab_result.every(elem => elem === firstElement)) {
+            return 3;
+        }
+
+        // Cas 1 : Trois éléments identiques consécutifs
+        for (let i = 0; i < tab_result.length - 2; i++) {
+            if (tab_result[i] === tab_result[i + 1] && tab_result[i] === tab_result[i + 2]) {
+                return 1;
+            }
+        }
+        // cas 0 : Perdu
+        return 0;
+    }
+
     isWin() {
         let tab_result = [];
 
@@ -44,9 +60,8 @@ class MachineSous {
             tab_result.push(roue.tab_elem[roue.current_elem].name)
         });
 
-        console.log(tab_result[-1]);
-
-
+        console.log(tab_result);
+        return this.verifierCombinaison(tab_result);
     }
 
     async jouer(ctx) {
@@ -54,9 +69,7 @@ class MachineSous {
         await this.update(ctx);
         console.log("machine stop");
 
-        this.isWin();
-
-
+        return this.isWin();
     }
 
 }

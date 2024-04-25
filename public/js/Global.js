@@ -1,4 +1,5 @@
 class Global {
+    static LANCER = false;
     static NB_ELEM = 8;
     static NB_ROUE = 5;
     static TAILLE_ICON = 94;

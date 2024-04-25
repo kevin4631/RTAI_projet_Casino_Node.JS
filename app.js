@@ -6,6 +6,7 @@ const port = 3000;
 
 // Affiche des fichiers statiques
 app.use(express.static('public'));
+app.use(express.('public'));
 
 
 app.get('/', (req, res) => {

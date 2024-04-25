@@ -43,23 +43,41 @@
 
     // Événement de clic sur le bouton "Jouer"
     document.getElementById('spinButton').addEventListener('click', function () {
-      machineSous.jouer(ctx);
+      if (Global.LANCER) {
+        console.log("machine déja lancé");
+      }
+      else {
+        Global.LANCER = true;
+        switch (machineSous.jouer(ctx)) {
+          case 0:
+            break;
+          case 1:
+            animationWin(1);
+            break;
+          case 2:
+            animationWin(2);
+            break;
+          case 3:
+            animationWin(3);
+            break;
+        }
+        Global.LANCER = false;
+      }
     });
-
 
 
     // ------------ FONCTION -------------------
 
-    async function animationWin() {
+    async function animationWin(cas) {
       // Accéder à l'élément HTML avec la classe 'container'
       const container = document.querySelector('.container');
       const img = document.querySelector('#canvas_back');
 
       for (let i = 0; i < 20; i++) {
-        container.style.boxShadow = '0 0 20px 10px #ff0000';
+        if (cas == 3) container.style.boxShadow = '0 0 20px 10px #ff0000';
         img.src = '/images/machineSousWin.png'
         await new Promise(resolve => setTimeout(resolve, 100));
-        container.style.boxShadow = '0 0 20px 10px #00b3ff';
+        if (cas == 3) container.style.boxShadow = '0 0 20px 10px #00b3ff';
         img.src = '/images/machineSous.png'
         await new Promise(resolve => setTimeout(resolve, 50));
       }
