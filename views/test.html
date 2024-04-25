@@ -6,20 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Machine à Sous</title>
   <link rel="stylesheet" href="/css/styles.css">
-  <style>
-    canvas {
-      border: 1px solid #ff00aa;
-    }
-  </style>
 </head>
 
 <body>
   <div class="container">
     <h1>Machine à Sous</h1>
 
-    <div id="slotMachine" class="slot-machine">
-      <canvas id="canvas"> </canvas>
-    </div>
+    <img id="canvas_back" src="/images/machineSous.png" /></a>
+    <canvas id="canvas"> </canvas>
 
 
     <button id="spinButton">Jouer</button>
@@ -31,7 +25,7 @@
     class Global {
       static NB_ELEM = 8;
       static NB_ROUE = 5;
-      static TAILLE_ICON = 100;
+      static TAILLE_ICON = 94;
       static DECALLAGE_HAUT = -30;
       static DECALLAGE_BAS = 30;
       static HEIGHT_CANVAS = Global.TAILLE_ICON * 3 + Global.DECALLAGE_HAUT - Global.DECALLAGE_BAS;
@@ -46,21 +40,22 @@
     canvas.height = Global.HEIGHT_CANVAS;
 
     class Elem {
-      constructor(id, x, y, img, ctx) {
+      constructor(id, x, y, name, ctx) {
         this.id = id;
         this.x = x;
         this.y = y;
+        this.name = name;
         this.img = new Image();
-        this.img.src = '/images/' + img + '.png';
+        this.img.src = '/images/' + this.name + '.png';
         this.img.onload = () => {
           this.draw(ctx);
         };
       }
 
-      update(ctx) {
-        this.y += Global.TAILLE_ICON;
+      update(ctx, vy) {
+        this.y += vy;
 
-        if (this.y == Global.TAILLE_ICON * Global.NB_ELEM - Global.DECALLAGE_BAS) // a modifier plus tard avec la class roue
+        if (this.y >= Global.TAILLE_ICON * Global.NB_ELEM - Global.DECALLAGE_BAS)
           this.y = Global.DECALLAGE_HAUT;
 
         this.draw(ctx)
@@ -75,38 +70,111 @@
       constructor(id, tab_elem) {
         this.id = id;
         this.tab_elem = tab_elem;
+        this.current_elem = 1;
       }
 
       async update(ctx) {
-        for (let i = 0; i < 20; i++) {
-          ctx.clearRect(0, 0, Global.TAILLE_ICON, Global.HEIGHT_CANVAS);
-          this.tab_elem.forEach(elem => {
-            elem.update(ctx);
-          });
-          await new Promise(resolve => setTimeout(resolve, 100)); // Attendre 500ms avant la prochaine itération
+        let random_nb_tour = Math.floor(Math.random() * 40) + 10;
+        let vitesse = 121 - random_nb_tour * 3;
+        for (let i = 0; i < random_nb_tour; i++) {
+
+
+          for (let j = 0; j < Global.TAILLE_ICON; j++) {
+            this.tab_elem.forEach(elem => {
+              elem.update(ctx, 1);
+            });
+            await new Promise(resolve => setTimeout(resolve, 1));
+          }
+
+
+
+          this.current_elem++;
+          if (this.current_elem >= 8)
+            this.current_elem = 0;
+
+          vitesse += 10
         }
       }
 
     }
 
+    class MachineSous {
+      constructor(ctx) {
+        this.tab_roue = [
+          this.createRoue(0, ['orange', 'bar', 'raisins', 'pasteque', 'cloche', 'citron', 'cerise', 'sept'], ctx),
+          this.createRoue(1, ['raisins', 'orange', 'bar', 'pasteque', 'citron', 'cloche', 'cerise', 'sept'], ctx),
+          this.createRoue(2, ['sept', 'bar', 'citron', 'pasteque', 'cloche', 'cerise', 'orange', 'raisins'], ctx),
+          this.createRoue(3, ['pasteque', 'sept', 'raisins', 'orange', 'cloche', 'bar', 'citron', 'cerise'], ctx),
+          this.createRoue(4, ['citron', 'cloche', 'sept', 'bar', 'pasteque', 'cerise', 'raisins', 'orange'], ctx)
+        ]
+      }
 
-    let tab_elem_roue1 = [
-      new Elem(0, 0, -30, 'orange', ctx),
-      new Elem(1, 0, Global.TAILLE_ICON - 30, 'bar', ctx),
-      new Elem(2, 0, Global.TAILLE_ICON * 2 - 30, 'raisins', ctx),
-      new Elem(3, 0, Global.TAILLE_ICON * 3 - 30, 'pasteque', ctx),
-      new Elem(4, 0, Global.TAILLE_ICON * 4 - 30, 'cloche', ctx),
-      new Elem(5, 0, Global.TAILLE_ICON * 5 - 30, 'citron', ctx),
-      new Elem(6, 0, Global.TAILLE_ICON * 6 - 30, 'cerise', ctx),
-      new Elem(7, 0, Global.TAILLE_ICON * 7 - 30, 'sept', ctx),
-    ];
+      createRoue(id_roue, tab_nomElem, ctx) {
+        let tab_elem = [];
+        let id_elm = 0;
 
-    let roue1 = new Roue(0, tab_elem_roue1);
+        tab_nomElem.forEach(nom => {
+          tab_elem.push(new Elem(id_elm, Global.TAILLE_ICON * id_roue, Global.TAILLE_ICON * id_elm - 30, nom, ctx));
+          id_elm++;
+        });
 
+        return new Roue(id_roue, tab_elem);
+      }
+
+
+      update(ctx) {
+        // Créer un tableau de promesses pour stocker les promesses de chaque appel à la méthode update de chaque instance de Roue
+        const promises = this.tab_roue.map(roue => roue.update(ctx));
+
+        // Utiliser Promise.all pour attendre que toutes les promesses soient résolues
+        return Promise.all(promises);
+      }
+
+      async jouer(ctx) {
+        console.log("machine start");
+        await this.update(ctx);
+        console.log("machine stop");
+
+        let outputString = "";
+
+        this.tab_roue.forEach(roue => {
+          outputString += roue.current_elem + " "
+        });
+
+
+        console.log(outputString);
+
+
+        animationWin();
+
+
+      }
+
+    }
+
+
+
+    async function animationWin() {
+      // Accéder à l'élément HTML avec la classe 'container'
+      const container = document.querySelector('.container');
+      const img = document.querySelector('#canvas_back');
+
+      for (let i = 0; i < 20; i++) {
+        container.style.boxShadow = '0 0 20px 10px #ff0000';
+        img.src = '/images/machineSousWin.png'
+        await new Promise(resolve => setTimeout(resolve, 100));
+        container.style.boxShadow = '0 0 20px 10px #00b3ff';
+        img.src = '/images/machineSous.png'
+        await new Promise(resolve => setTimeout(resolve, 50));
+      }
+    }
+
+
+    let machineSous = new MachineSous(ctx);
 
     // Événement de clic sur le bouton "Jouer"
     document.getElementById('spinButton').addEventListener('click', function () {
-      roue1.update(ctx);
+      machineSous.jouer(ctx);
     });
 
 
