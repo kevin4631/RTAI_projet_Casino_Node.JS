@@ -22,14 +22,13 @@ class Roue {
                 await new Promise(resolve => setTimeout(resolve, vitesse));
             }
 
-            // Si nous sommes dans les 5 dernières itérations, ralentissons de manière exponentielle
             if (i >= random_nb_tour - 10) {
-                vitesse *= 1.1; // Doublez la vitesse à chaque itération pour ralentir exponentiellement
+                vitesse *= 1.1;
             }
 
-            this.current_elem++;
-            if (this.current_elem >= 8)
-                this.current_elem = 0;
+            this.current_elem--;
+            if (this.current_elem < 0)
+                this.current_elem = Global.NB_ELEM - 1;
         }
     }
 

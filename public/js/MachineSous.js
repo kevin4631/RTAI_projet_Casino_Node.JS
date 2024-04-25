@@ -41,10 +41,10 @@ class MachineSous {
         let tab_result = [];
 
         this.tab_roue.forEach(roue => {
-            tab_result.push(roue.current_elem)
+            tab_result.push(roue.tab_elem[roue.current_elem].name)
         });
 
-        console.log(tab_result);
+        console.log(tab_result[-1]);
 
 
     }
