@@ -18,6 +18,78 @@ body::before {
   z-index: -1;
 }
 
+.home{
+  position: absolute;
+  top: 0px;
+  left: 3%;
+  height: 80px;
+}
+
+.home:hover{
+  top: -10px;
+}
+
+.gras{
+  padding-top: 20px;
+  padding-bottom: 3px;
+
+  font-weight: bold;
+  color: #f7b217;
+
+}
+
+.paddind_left{
+  padding-left: 20px;
+  color: #ffffff;
+
+}
+
+.center{
+  text-align: center;
+}
+
+/* Styles pour le div généré */
+#generatedDiv {
+  background-color: rgba(4, 73, 70, 0.8);
+  border-radius: 18px;
+  box-shadow: 0 0 10px 1px #00b3ff65;
+  position: absolute;
+  top: 120px;
+  left: 3%;
+
+  width: 450px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+/* Style pour les balises p à l'intérieur du div */
+#generatedDiv p {
+
+  margin: 5px 0;
+}
+
+
+/* Styles pour le div généré */
+#result {
+  background-color: rgba(4, 73, 70, 0.8);
+  border-radius: 18px;
+  box-shadow: 0 0 10px 1px #00b3ff65;
+  position: absolute;
+  top: 120px;
+  right: 3%;
+
+  width: 450px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+/* Style pour les balises p à l'intérieur du div */
+#result p {
+  text-align: center;
+
+  margin: 5px 0;
+}
+
 
 .container {
   position: relative;

@@ -9,6 +9,27 @@
 </head>
 
 <body>
+
+  <a href="/"><img class="home" src="/images/casino-logo.png" alt="Logo du Casino Royal" /></a>
+
+  <div id="generatedDiv">
+    <p class="gras center">ATTENTION UNE PARTIE COUTE 10 CREDIT</p>
+
+    <p class="gras">JACK POT !! : Cinq éléments identiques <br> GAIN : LA MISE FOIS 100</p>
+    <p class="paddind_left">Ce cas se produit lorsque les cinq éléments successifs sont identiques</p>
+
+    <p class="gras">GAIN 1 : Trois éléments identiques consécutifs et 2 Identiques <br>GAIN : LA MISE FOIS 30</p>
+    <p class="paddind_left">Ce cas se produit lorsqu'il y a trois éléments identiques consécutifs et deux autres
+      identiques mais non
+      consécutifs</p>
+
+    <p class="gras">GAIN 2 : Trois éléments identiques consécutifs <br> GAIN : LA MISE FOIS 10</p>
+    <p class="paddind_left">Ce cas se produit lorsque les trois éléments successifs sont identiques</p>
+
+    <p class="gras">GAIN 3 : ENV DE TEST UNIQUEMENT</p>
+    <p class="paddind_left">Ce cas est utilisé uniquement dans l'environnement de test pour des besoins spécifiques</p>
+  </div>
+
   <div class="container">
     <h1>Machine à Sous</h1>
 
@@ -17,8 +38,14 @@
 
 
     <button id="spinButton">Jouer</button>
-    <div id="result"></div>
   </div>
+
+  <div id="result">
+    <p class="gras">RESULTAT</p>
+    <p id="res" class="paddind_left">les resultat s'afficheront ici</p>
+    <p id="credit">Vos Credit : </p>
+  </div>
+
 
   <script type="module">
     // import des class
@@ -51,19 +78,27 @@
 
         machineSous.jouer(ctx).then(result => {
 
+          let res = document.querySelector('#res');
           console.log('resultat : ' + result);
           switch (result) {
             case -1:
               // ENV DE TEST
+              res.innerHTML = "ENV DE TEST"
               animationWin(1);
               break;
+            case 0:
+              res.innerHTML = "Perdu.."
+              break;
             case 1:
+              res.innerHTML = "GAIN 1"
               animationWin(1);
               break;
             case 2:
+              res.innerHTML = "GAIN 2"
               animationWin(2);
               break;
             case 3:
+              res.innerHTML = "!!!! JACK POT !!!!"
               animationWin(3);
               break;
           }
