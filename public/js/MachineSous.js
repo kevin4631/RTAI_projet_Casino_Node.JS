@@ -37,12 +37,6 @@ class MachineSous {
 
 
     verifierCombinaison(tab_result) {
-        // Cas -1 : ENV DE TEST UNIQUEMENT
-        for (let i = 0; i < tab_result.length - 2; i++) {
-            if (tab_result[i] === tab_result[i + 1] || tab_result[i+1] === tab_result[i + 2]) {
-                return -1;
-            }
-        }
 
         // Cas 3 : Cinq éléments identiques
         let firstElement = tab_result[0];
@@ -63,6 +57,13 @@ class MachineSous {
             }
         }
 
+        // Cas -1 : ENV DE TEST UNIQUEMENT
+        for (let i = 0; i < tab_result.length - 2; i++) {
+            if (tab_result[i] === tab_result[i + 1] || tab_result[i + 1] === tab_result[i + 2]) {
+                return -1;
+            }
+        }
+
         // Cas 0 : Perdue
         return 0;
     }
@@ -73,6 +74,9 @@ class MachineSous {
         this.tab_roue.forEach(roue => {
             tab_result.push(roue.tab_elem[roue.current_elem].name)
         });
+
+        // ENV DE PROD POUR TESTE 
+        //tab_result=['citron','citron','citron','citron','citron']
 
         console.log(tab_result);
         return this.verifierCombinaison(tab_result);
