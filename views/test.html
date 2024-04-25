@@ -20,18 +20,14 @@
     <div id="result"></div>
   </div>
 
-  <script>
+  <script type="module">
+    // import des class
+    import Global from '/js/Global.js';
+    import Elem from '/js/Elem.js';
+    import Roue from '/js/Roue.js';
+    import MachineSous from '/js/MachineSous.js';
 
-    class Global {
-      static NB_ELEM = 8;
-      static NB_ROUE = 5;
-      static TAILLE_ICON = 94;
-      static DECALLAGE_HAUT = -30;
-      static DECALLAGE_BAS = 30;
-      static HEIGHT_CANVAS = Global.TAILLE_ICON * 3 + Global.DECALLAGE_HAUT - Global.DECALLAGE_BAS;
-    }
-
-
+    // creation de canvas
     var canvas = document.querySelector('#canvas');
     var ctx = canvas.getContext('2d');
 
@@ -39,120 +35,20 @@
     canvas.width = Global.TAILLE_ICON * Global.NB_ROUE;
     canvas.height = Global.HEIGHT_CANVAS;
 
-    class Elem {
-      constructor(id, x, y, name, ctx) {
-        this.id = id;
-        this.x = x;
-        this.y = y;
-        this.name = name;
-        this.img = new Image();
-        this.img.src = '/images/' + this.name + '.png';
-        this.img.onload = () => {
-          this.draw(ctx);
-        };
-      }
-
-      update(ctx, vy) {
-        this.y += vy;
-
-        if (this.y >= Global.TAILLE_ICON * Global.NB_ELEM - Global.DECALLAGE_BAS)
-          this.y = Global.DECALLAGE_HAUT;
-
-        this.draw(ctx)
-      }
-
-      draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, Global.TAILLE_ICON, Global.TAILLE_ICON);
-      }
-    }
-
-    class Roue {
-      constructor(id, tab_elem) {
-        this.id = id;
-        this.tab_elem = tab_elem;
-        this.current_elem = 1;
-      }
-
-      async update(ctx) {
-        let random_nb_tour = Math.floor(Math.random() * 40) + 10;
-        let vitesse = 121 - random_nb_tour * 3;
-        for (let i = 0; i < random_nb_tour; i++) {
+    // creation machine a sous
+    let machineSous = new MachineSous(ctx);
 
 
-          for (let j = 0; j < Global.TAILLE_ICON; j++) {
-            this.tab_elem.forEach(elem => {
-              elem.update(ctx, 1);
-            });
-            await new Promise(resolve => setTimeout(resolve, 1));
-          }
+    // ------------ EVENEMENT -------------------
+
+    // Événement de clic sur le bouton "Jouer"
+    document.getElementById('spinButton').addEventListener('click', function () {
+      machineSous.jouer(ctx);
+    });
 
 
 
-          this.current_elem++;
-          if (this.current_elem >= 8)
-            this.current_elem = 0;
-
-          vitesse += 10
-        }
-      }
-
-    }
-
-    class MachineSous {
-      constructor(ctx) {
-        this.tab_roue = [
-          this.createRoue(0, ['orange', 'bar', 'raisins', 'pasteque', 'cloche', 'citron', 'cerise', 'sept'], ctx),
-          this.createRoue(1, ['raisins', 'orange', 'bar', 'pasteque', 'citron', 'cloche', 'cerise', 'sept'], ctx),
-          this.createRoue(2, ['sept', 'bar', 'citron', 'pasteque', 'cloche', 'cerise', 'orange', 'raisins'], ctx),
-          this.createRoue(3, ['pasteque', 'sept', 'raisins', 'orange', 'cloche', 'bar', 'citron', 'cerise'], ctx),
-          this.createRoue(4, ['citron', 'cloche', 'sept', 'bar', 'pasteque', 'cerise', 'raisins', 'orange'], ctx)
-        ]
-      }
-
-      createRoue(id_roue, tab_nomElem, ctx) {
-        let tab_elem = [];
-        let id_elm = 0;
-
-        tab_nomElem.forEach(nom => {
-          tab_elem.push(new Elem(id_elm, Global.TAILLE_ICON * id_roue, Global.TAILLE_ICON * id_elm - 30, nom, ctx));
-          id_elm++;
-        });
-
-        return new Roue(id_roue, tab_elem);
-      }
-
-
-      update(ctx) {
-        // Créer un tableau de promesses pour stocker les promesses de chaque appel à la méthode update de chaque instance de Roue
-        const promises = this.tab_roue.map(roue => roue.update(ctx));
-
-        // Utiliser Promise.all pour attendre que toutes les promesses soient résolues
-        return Promise.all(promises);
-      }
-
-      async jouer(ctx) {
-        console.log("machine start");
-        await this.update(ctx);
-        console.log("machine stop");
-
-        let outputString = "";
-
-        this.tab_roue.forEach(roue => {
-          outputString += roue.current_elem + " "
-        });
-
-
-        console.log(outputString);
-
-
-        animationWin();
-
-
-      }
-
-    }
-
-
+    // ------------ FONCTION -------------------
 
     async function animationWin() {
       // Accéder à l'élément HTML avec la classe 'container'
@@ -168,14 +64,6 @@
         await new Promise(resolve => setTimeout(resolve, 50));
       }
     }
-
-
-    let machineSous = new MachineSous(ctx);
-
-    // Événement de clic sur le bouton "Jouer"
-    document.getElementById('spinButton').addEventListener('click', function () {
-      machineSous.jouer(ctx);
-    });
 
 
   </script>
