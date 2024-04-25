@@ -13,6 +13,10 @@ Licence MIAW parcours RTAI
 npm init -y
 npm install express
 npm install mysql
+npm install body-parser
+npm install path
+npm install crypto
+npm install express-session
 cd back
 node server.js
 
